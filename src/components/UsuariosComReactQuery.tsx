@@ -1,5 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
+interface Usuario {
+  id: number;
+  name: string;
+  email: string;
+  // ... outros campos se precisar
+}
+
 function Usuarios() {
   const { data: usuarios, isLoading, error } = useQuery({
     queryKey: ["usuarios"],
@@ -13,7 +20,7 @@ function Usuarios() {
 
   return (
     <ul>
-      {usuarios?.map(u => (
+      {usuarios?.map((u: Usuario) => (  // ✅ Tipado!
         <li key={u.id}>{u.name}</li>
       ))}
     </ul>
